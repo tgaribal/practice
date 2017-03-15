@@ -395,3 +395,63 @@ var sortScores = function (scoresArray, highestScore) {
 
 }
 // console.log(sortScores([37, 99, 99, 89, 41, 65, 91, 53], 100));
+
+var findDupe = (array, n) => {
+  const total = (n * (n+1)) / 2;
+  let sum = array.reduce((total, num) => total += num)
+  console.log(total, sum)
+  return sum - total;
+}
+
+// console.log(findDupe([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 18, 19, 20, 21, 22, 23, 24], 24))
+
+var wordCloud = (string) => {
+  var words = string.split(' ')
+  var wordCloud = new Map();
+
+  words.forEach(word => {
+    let cleanWord = '';
+    for (var i = 0; i < word.length; i++) {
+      if (word[i].match(/[a-z\-]/i)) cleanWord+=word[i].toLowerCase();
+    }
+
+    if (wordCloud.has(cleanWord)) {
+      let val = wordCloud.get(cleanWord);
+      wordCloud.set(cleanWord, ++val)
+    } else {
+      wordCloud.set(cleanWord, 1)
+    }
+  })
+  return wordCloud;
+}
+//SOLUTION INCOMPLETE
+// console.log(wordCloud('We came, we saw, we conquered...then we ate Bill\'s (Mille-Feuille) cake.'))
+
+var getRandom = (floor, ceil) => {
+  return Math.floor(Math.random() * (ceil - floor) + floor);
+}
+
+var shuffleArray = (array) => {
+  for (var i = 0; i < array.length; i++) {
+    var rand = getRandom(i, array.length)
+    var temp = array[rand];
+    array[rand] = array[i];
+    array[i] = temp;
+  }
+  return array;
+}
+// console.log(shuffleArray([1, 4, 8, 3, 9, 0, 2, 5, 6, 1]))
+
+var isCompleteDeck = (half1, half2) => {
+  var deck = new Set(half1);
+  if (half1.length + half2.length !== 52) {
+    return false;
+  }
+  for (var i = 0; i < half2.length; i++) {
+    if (deck.has(half2[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+// console.log(isCompleteDeck([1, 2, 3, 4, 6], [5, 7, 9, 10]))
