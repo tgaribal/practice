@@ -1,2 +1,0 @@
-# practice
-IC Practice problems
