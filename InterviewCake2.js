@@ -373,6 +373,25 @@ var stringPermutations = function (str) {
 // console.log(arr.slice(1))
 
 
-var sortScores = function () {
-  
+var sortScores = function (scoresArray, highestScore) {
+  var scoreTracker = [];
+  var sortedScores = [];
+  for (var i = 0; i < highestScore; i++) {
+    scoreTracker[i] = 0;
+  }
+
+  for (var j = 0; j < scoresArray.length; j++) {
+    var score = scoresArray[j];
+    scoreTracker[score]++;
+  }
+
+  for (var k = 0; k < scoreTracker.length; k++) {
+    var valueAtK = scoreTracker[k];
+    for (var j = 0; j < valueAtK; j++) {
+      sortedScores.push(k)
+    }
+  }
+  return sortedScores;
+
 }
+// console.log(sortScores([37, 99, 99, 89, 41, 65, 91, 53], 100));
