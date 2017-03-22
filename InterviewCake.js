@@ -1,37 +1,22 @@
 //================================ PROBLEM 1 ================================//
 
-function getMaxProfit(stockPricesYesterday) {
-//     // var largestDiff = stockPricesYesterday[1] - stockPricesYesterday[0];
-//     // for (var i = 0; i < stockPricesYesterday.length; i++) {
-//     //     for (var j = i+1; j < stockPricesYesterday.length; j++) {  
-//     //       var diff = (stockPricesYesterday[j] - stockPricesYesterday[i])
-//     //         if (diff > largestDiff) {
-//     //             largestDiff = diff
-//     //         }
-//     //     }
-//     // }
-//     // return largestDiff
-//     var lowest = stockPricesYesterday[0];
-//     var largestDiff = stockPricesYesterday[1] - stockPricesYesterday[0];
+function getMaxProfit(stockPrices) {
+  let lowestBuy = stockPrices[0];
+  let maxProfit = stockPrices[1] - lowestBuy;
 
-//     for (var i = 1; i < stockPricesYesterday.length; i++) {
-//       var diff = stockPricesYesterday[i] - lowest;
-//       if (diff > largestDiff) {
-//         largestDiff = diff;
-//       }
-//       if (stockPricesYesterday[i] < lowest) {
-//         lowest = stockPricesYesterday[i];
-//       }
-//     }
-//     return largestDiff;
+  for (var i = 1; i < stockPrices.length; i++) {
+    maxProfit = Math.max(maxProfit, stockPrices[i] - lowestBuy);
+
+    lowestBuy = Math.min(lowestBuy, stockPrices[i]);
+  }
+  return maxProfit;
 }
 
-// // run your function through some test cases here
-// // remember: debugging is half the battle!
-// console.log(getMaxProfit([1, 7, 5, 8, 110, 9]));
-// console.log(getMaxProfit([1, 7])); //6
-// console.log(getMaxProfit([100, 100, 3, 1])); //0
-// console.log(getMaxProfit([10, 5, 4, 3, 2, 1])); //-1
+// console.log(getMaxProfit([10, 7, 5, 8, 11, 9]))
+// console.log(getMaxProfit([10, 10, 10, 10]))
+// console.log(getMaxProfit([10, 9, 4]))
+
+// console.log(getMaxProfit([10, 7, 5, 8, 11, 9]))
 
 
 
@@ -84,9 +69,23 @@ var getProductsOfAllIntsExceptAtIndex = function(arr) {
   //   }
   // })
 
+  let result = [];
+
+  let currentProduct = 1;
+  for (var i = 0; i < arr.length; i++) {
+    result[i] = currentProduct;
+    currentProduct *= arr[i];
+  }
+
+  currentProduct = 1;
+  for (var i = arr.length-1; i >=0; i--) {
+    result[i]*=currentProduct;
+    currentProduct*=arr[i]
+  }
+  console.log(result)
 } 
 
-// console.log(getProductsOfAllIntsExceptAtIndex([1, 7, 3, 4, 0, 0])) // [84, 12, 28, 21]
+// console.log(getProductsOfAllIntsExceptAtIndex([1, 7, 3, 4])) // [84, 12, 28, 21]
 
 
 var highestProductOfThree = function (arr) {

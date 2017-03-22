@@ -396,11 +396,15 @@ var sortScores = function (scoresArray, highestScore) {
 }
 // console.log(sortScores([37, 99, 99, 89, 41, 65, 91, 53], 100));
 
-var findDupe = (array, n) => {
+var findSingleDupeTime = (array, n) => {
   const total = (n * (n+1)) / 2;
   let sum = array.reduce((total, num) => total += num)
   console.log(total, sum)
   return sum - total;
+}
+
+var findAnyDupeSpace = (array) => {
+
 }
 
 // console.log(findDupe([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 18, 19, 20, 21, 22, 23, 24], 24))
@@ -455,3 +459,38 @@ var isCompleteDeck = (half1, half2) => {
   return true;
 }
 // console.log(isCompleteDeck([1, 2, 3, 4, 6], [5, 7, 9, 10]))
+
+// var rand7 = () => {
+//   return Math.floor(Math.random() * 7) + 1
+// }
+
+// var rand5 = () => {
+//   var result = 6;
+//   while (result > 5) {
+//     result = rand7();
+//   }
+//   return result;
+// }
+
+// console.log(rand7())
+
+var mergeArrays = (arr1, arr2) => {
+  var result = [];
+
+  while (arr1.length && arr2.length) {
+    console.log(arr1[0], arr2[0])
+    if (arr1[0] <= arr2[0]) {
+      result.push(arr1[0]);
+      arr1.shift();
+    } else {
+      result.push(arr2[0]);
+      arr2.shift();
+    }
+  }
+
+  if (arr1.length) result = result.concat(arr1);
+  if (arr2.length) result = result.concat(arr2);
+  return result;
+}
+
+console.log(mergeArrays([3, 4, 6, 10, 11, 15, 20, 21, 22, 34], [1, 5, 8, 12, 14, 19, ]))
