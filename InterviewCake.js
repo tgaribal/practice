@@ -69,16 +69,16 @@ var getProductsOfAllIntsExceptAtIndex = function(arr) {
   //   }
   // })
 
-  let result = [];
+  const result = [];
 
   let currentProduct = 1;
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     result[i] = currentProduct;
     currentProduct *= arr[i];
   }
 
   currentProduct = 1;
-  for (var i = arr.length-1; i >=0; i--) {
+  for (let i = arr.length-1; i >=0; i--) {
     result[i]*=currentProduct;
     currentProduct*=arr[i]
   }
@@ -89,7 +89,7 @@ var getProductsOfAllIntsExceptAtIndex = function(arr) {
 
 
 var highestProductOfThree = function (arr) {
-  // //Brute method, I think this is O(n)  but they use greedy method, below
+  // //Brute method, this is O(n log n) (if we had a merge sort or something)  but they use greedy method, below
   // var sorted = arr.sort((a, b) => a-b);
   // if (arr.length < 3) {
   //   return 'Array must have at least 3 integers'
@@ -131,6 +131,8 @@ var highestProductOfThree = function (arr) {
   //     lowest = Math.min(current, lowest);
   //   }
   // return highestOfThree;
+
+
 } 
 
 // console.log(highestProductOfThree([1, 10, -5, 1, -100]));
@@ -156,23 +158,43 @@ var mergeRanges = function (meetingTimes) {
   // }
   // results.push(chunk);
   // return results;
+
+  let sorted = meetingTimes.slice().sort((a, b) => a.startTime - b.startTime);
+  let currentBounds = sorted[0];
+  let result = [];
+
+  sorted.forEach(meeting => {
+    if (meeting.startTime <= currentBounds.endTime) {
+      if (meeting.endTime > currentBounds.endTime) {
+        currentBounds.endTime = meeting.endTime;
+      } 
+    } else {
+      result.push(currentBounds);
+      currentBounds = meeting;
+    }
+  })
+  result.push(currentBounds)
+  return result;
+
 } 
 
-// var meetingTimes = [
-//   {startTime: 1, endTime: 10},
-//   {startTime: 2, endTime: 6},
-//   {startTime: 3, endTime: 5},
-//   {startTime: 7, endTime: 9},
-// ]
-// var meetingTimes = [
-//   {startTime: 0,  endTime: 1},
-//   {startTime: 3,  endTime: 5},
-//   {startTime: 4,  endTime: 8},
-//   {startTime: 9,  endTime: 10},
-//   {startTime: 10, endTime: 12},
-// ];
+var meetingTimes1 = [
+  {startTime: 1, endTime: 10},
+  {startTime: 2, endTime: 6},
+  {startTime: 3, endTime: 5},
+  {startTime: 7, endTime: 9}
+]
+var meetingTimes2 = [
+  {startTime: 0,  endTime: 1},
+  {startTime: 3,  endTime: 5},
+  {startTime: 4,  endTime: 9},
+  {startTime: 9,  endTime: 10},
+  {startTime: 10, endTime: 12},
+];
 
-//console.log(mergeRanges(meetingTimes));
+// console.log(mergeRanges(meetingTimes1));
+// console.log('//')
+// console.log(mergeRanges(meetingTimes2));
 
 
 
@@ -213,10 +235,69 @@ var makeChange = function(amount, denominations) {
   //   }
   // });
   // console.log(waysOfDoingNCents)
+  let coinCount = [];
+
+  for (let currentAmount = 0; currentAmount<=amount; currentAmount++) {
+    coinCount[currentAmount] = currentAmount === 0 ? 1 : 0;
+  }
+    denominations.forEach(coin => {
+      // if (coin >= currentAmount) {
+        for (let i = coin; i <= amount; i++) {
+          let diff =  i - coin
+          coinCount[i] += coinCount[diff];
+          
+        }
+    })
+  console.log('coinCount', coinCount)
+
 }
-// console.log(makeChange(5, [1, 3, 5]))
+
+console.log(makeChange(5, [1, 3, 5]))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const findMinNumCoins = function (sum, coinList) {
+  let coinCounts = [];
+
+  // for (let currentSum = 0; currentSum <= sum; currentSum++) {
+  //   coinCounts[currentSum] = currentSum===0 ? 0 : Infinity;
+  //   coinList.forEach(coin => {
+  //     if (coin <= currentSum) {
+  //       let diff = currentSum - coin;
+  //       coinCounts[currentSum] = Math.min( coinCounts[currentSum], 1+coinCounts[diff]);
+  //     }
+      
+  //   })
+  // }
+
+  return coinCounts[sum]
+
+}
+
+// console.log(findMinNumCoins(11, [1, 3, 5]))
 
 var findLoveRectangle = function(rect1, rect2) {
 
