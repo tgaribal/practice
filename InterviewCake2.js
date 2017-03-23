@@ -1,24 +1,33 @@
-var memo = {};
 
 var fib = function (n) {
-  // if (n === 0 || n === 1) {
-  //   memo[n] = n;
-  //   return n;
-  // } 
+  // const memo = {};
 
-  // if (memo[n]) {
-  //   return memo[n]
-  // } else {
-  //   result = fib(n-1) + fib(n-2)
-  //   memo[n] = result;
-  //   return result;
+  // memo[0] = 0;
+  // memo[1] = 1;
+
+  // for (let i = 2; i <= n; i++) {
+  //   memo[i] = memo[i - 1] + memo[i - 2];
   // }
+  // return memo[n];
 
+  // if (n === 0) return 0;
+  // if (n === 1) return 1;
+  // return fib(n-1) + fib(n -2);
 
+  let prevPrev = 0;
+  let prev = 1;
+  let current;
+
+  for (let i = 1; i < n; i++) {
+    current = prev + prevPrev;
+    prevPrev = prev
+    prev = current;
+  }
+  return current;
 
 }
 
-// console.log(fib(12));
+console.log(fib(12));
 
 
 var maxDuffleBagValue = function (cakeTypes, capacity) {
@@ -493,4 +502,4 @@ var mergeArrays = (arr1, arr2) => {
   return result;
 }
 
-console.log(mergeArrays([3, 4, 6, 10, 11, 15, 20, 21, 22, 34], [1, 5, 8, 12, 14, 19, ]))
+// console.log(mergeArrays([3, 4, 6, 10, 11, 15, 20, 21, 22, 34], [1, 5, 8, 12, 14, 19, ]))
