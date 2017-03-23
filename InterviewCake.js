@@ -252,31 +252,7 @@ var makeChange = function(amount, denominations) {
 
 }
 
-console.log(makeChange(5, [1, 3, 5]))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// console.log(makeChange(5, [1, 3, 5]))
 
 
 const findMinNumCoins = function (sum, coinList) {
@@ -468,13 +444,31 @@ var findPivot = function (arr) {
   //   if (firstIndex + 1 === lastIndex) break;
   // }
   // return lastIndex;
+
+  let start = 0;
+  let end = arr.length - 1;
+  let mid;
+  while (end !== start+1) {
+    mid = Math.floor((start + end) / 2);
+    // console.log(mid)
+    if (arr[start] > arr[mid]) { //pivot is left
+      end = mid;
+      // mid = Math.floor((start + end) / 2);
+    } else { //pivot is right
+      start = mid;
+    }
+  }
+
+  return `index: ${end}, item: ${arr[end]}`;
+
+
 }
 
-// console.log(findPivot([8, 9, 10, 1, 2, 3, 4, 5, 6]))
-// console.log(findPivot([8, 9, 10, 1]))
-// console.log(findPivot([10, 1, 2, 3, 4]))
-// console.log(findPivot([4, 5, 6, 7, 1]))
-// console.log(findPivot([8, 5, 6, 7]))
+console.log(findPivot([8, 9, 10, 1, 2, 3, 4, 5, 6]))
+console.log(findPivot([8, 9, 10, 1]))
+console.log(findPivot([10, 1, 2, 3, 4]))
+console.log(findPivot([4, 5, 6, 7, 1]))
+console.log(findPivot([8, 5, 6, 7]))
 
 var websiteCacheTrie = function () {
   this.rootNode = {};
