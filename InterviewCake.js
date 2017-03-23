@@ -430,20 +430,6 @@ var isValidBST = function (node) {
 // tree.insertLeft()
 
 var findPivot = function (arr) {
-  // var firstIndex = 0;
-  // var lastIndex = arr.length - 1;
-  // while (firstIndex < lastIndex) {
-
-  //   var midIndex = Math.floor( ((firstIndex + lastIndex) / 2) );
-  //   // console.log(firstIndex, midIndex, lastIndex)
-  //   if (arr[midIndex] < arr[firstIndex]) {
-  //     lastIndex = midIndex;
-  //   } else {
-  //     firstIndex = midIndex;
-  //   }
-  //   if (firstIndex + 1 === lastIndex) break;
-  // }
-  // return lastIndex;
 
   let start = 0;
   let end = arr.length - 1;
@@ -461,14 +447,13 @@ var findPivot = function (arr) {
 
   return `index: ${end}, item: ${arr[end]}`;
 
-
 }
 
-console.log(findPivot([8, 9, 10, 1, 2, 3, 4, 5, 6]))
-console.log(findPivot([8, 9, 10, 1]))
-console.log(findPivot([10, 1, 2, 3, 4]))
-console.log(findPivot([4, 5, 6, 7, 1]))
-console.log(findPivot([8, 5, 6, 7]))
+// console.log(findPivot([8, 9, 10, 1, 2, 3, 4, 5, 6]))
+// console.log(findPivot([8, 9, 10, 1]))
+// console.log(findPivot([10, 1, 2, 3, 4]))
+// console.log(findPivot([4, 5, 6, 7, 1]))
+// console.log(findPivot([8, 5, 6, 7]))
 
 var websiteCacheTrie = function () {
   this.rootNode = {};
@@ -492,22 +477,19 @@ websiteCacheTrie.prototype.checkPresentAndAdd = function (siteUrl) {
 
 
 var inflightEntertainment = function (flightLength, movieLengths) {
-  // var keys = {};
+  const movieTimes = new Set(movieLengths);
+  for (var i = 0; i < movieLengths.length; i++) {
+    const diff = flightLength - movieLengths[i];
+    if (movieTimes.has(diff)) {
+      return true;
+    }
+  }
+  return false;
 
-
-  // for (var i = 0; i < movieLengths.length; i++) {
-  //   keys[movieLengths[i]] = true;
-  //   var timeRemaining = flightLength - movieLengths[i];
-
-  //   if (keys.hasOwnProperty(timeRemaining)) {
-  //     return true;
-  //   }
-  // } 
-  // return false;
 }
 
-// console.log(inflightEntertainment(10, [2, 3, 4, 5, 6, 7]));
-// console.log(inflightEntertainment(5, [2, 3]));
-// console.log(inflightEntertainment(10, [11, 12, 13, 8, 10]));
-// console.log(inflightEntertainment(1, [2, 3, 4, 5, 6, 7]));
+console.log(inflightEntertainment(10, [2, 3, 4, 5, 6, 7]));
+console.log(inflightEntertainment(5, [2, 3]));
+console.log(inflightEntertainment(10, [11, 12, 13, 8, 10]));
+console.log(inflightEntertainment(1, [2, 3, 4, 5, 6, 7]));
 
