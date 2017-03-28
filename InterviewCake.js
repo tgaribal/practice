@@ -198,61 +198,27 @@ var meetingTimes2 = [
 
 
 
-var makeChange = function(amount, denominations) {
-//   var count = 0;
+const makeChange = function(amount, denominations) {
+  const numCoins = [];
 
-//   var getCoins = function(amountRemaining, index) {
-//     index = index || 0;
+  for (let currentAmount = 0; currentAmount <= amount; currentAmount++) {
+    numCoins[currentAmount] = currentAmount === 0 ? 1 : 0;
 
-//     if (amountRemaining === 0) {
-//       console.log('BOOM')
-//       return count++;
-//     } else if (amountRemaining < 0 || index===denominations.length) {
-//       return;
-//     } else {
-//       var coin = denominations[index];
-//       while (amountRemaining >= 0) {
-//         getCoins(amountRemaining, index+1); 
-//         amountRemaining -= coin;  
-//       }
-//     }
-//   }
-
-//   getCoins(amount, 0);
-//   return count;
-
-  // var waysOfDoingNCents = [];
-
-  // for (var i = 0; i <= amount; i++) {
-  //   waysOfDoingNCents[i] = i===0 ? 1 : 0
-  // }
-  // console.log(waysOfDoingNCents);
-
-  // denominations.forEach(coin => {
-  //   for (var i = coin; i <= amount; i++) {
-
-  //     waysOfDoingNCents[i] += waysOfDoingNCents[i - coin]
-  //   }
-  // });
-  // console.log(waysOfDoingNCents)
-  let coinCount = [];
-
-  for (let currentAmount = 0; currentAmount<=amount; currentAmount++) {
-    coinCount[currentAmount] = currentAmount === 0 ? 1 : 0;
-  }
     denominations.forEach(coin => {
-      // if (coin >= currentAmount) {
-        for (let i = coin; i <= amount; i++) {
-          let diff =  i - coin
-          coinCount[i] += coinCount[diff];
-          
-        }
+      let amountLeft = currentAmount - coin;
+      console.log(numCoins)
+      if (amountLeft >= 0) {
+        let numCoinCombo = 1 + numCoins[amountLeft]
+        numCoins[currentAmount] = numCoins[amountLeft]
+        numCoins[currentAmount]++
+      }
     })
-  console.log('coinCount', coinCount)
-
+  }
+  console.log(numCoins)
+  return numCoins[amount]
 }
 
-// console.log(makeChange(5, [1, 3, 5]))
+console.log(makeChange(5, [1, 3, 5]))
 
 
 const findMinNumCoins = function (sum, coinList) {
@@ -488,8 +454,8 @@ var inflightEntertainment = function (flightLength, movieLengths) {
 
 }
 
-console.log(inflightEntertainment(10, [2, 3, 4, 5, 6, 7]));
-console.log(inflightEntertainment(5, [2, 3]));
-console.log(inflightEntertainment(10, [11, 12, 13, 8, 10]));
-console.log(inflightEntertainment(1, [2, 3, 4, 5, 6, 7]));
+// console.log(inflightEntertainment(10, [2, 3, 4, 5, 6, 7]));
+// console.log(inflightEntertainment(5, [2, 3]));
+// console.log(inflightEntertainment(10, [11, 12, 13, 8, 10]));
+// console.log(inflightEntertainment(1, [2, 3, 4, 5, 6, 7]));
 

@@ -1,29 +1,31 @@
 
 var fib = function (n) {
-  // const memo = {};
+  if (n === 0) return n;
+  if (n === 1) return n;
 
-  // memo[0] = 0;
-  // memo[1] = 1;
+  // return fib(n-1) + fib(n-2);
+
+  // const fibNums = {};
+  // fibNums[0] = 0;
+  // fibNums[1] = 1;
 
   // for (let i = 2; i <= n; i++) {
-  //   memo[i] = memo[i - 1] + memo[i - 2];
+
+  //   fibNums[i] = fibNums[i - 1] + fibNums [i - 2];
   // }
-  // return memo[n];
-
-  // if (n === 0) return 0;
-  // if (n === 1) return 1;
-  // return fib(n-1) + fib(n -2);
-
+  // return fibNums[n];
   let prevPrev = 0;
   let prev = 1;
   let current;
 
-  for (let i = 1; i < n; i++) {
+  for (let i = 2; i <= n; i++) {
     current = prev + prevPrev;
     prevPrev = prev
     prev = current;
+
   }
-  return current;
+  return current
+
 
 }
 
@@ -31,22 +33,33 @@ console.log(fib(12));
 
 
 var maxDuffleBagValue = function (cakeTypes, capacity) {
-  // var maxValuesAtCapacities = [];
-  // // for (var i = 0; i < capacity; i++) {
-  // //   maxValuesAtCapacities[i] = 0;
-  // // }
+  const maxValueTable = {};
 
-  // console.log(maxValuesAtCapacities)
+  for (var i = 0; i <= capacity; i++) {
+    maxValueTable[i] = 0;
+
+    cakeTypes.forEach(cake => {
+      let capacityLeft = i - cake.weight;
+
+      if (capacityLeft >= 0) {
+        let newValue = cake.value + maxValueTable[capacityLeft];
+        maxValueTable[i] = Math.max(maxValueTable[i], newValue)
+      }
+    })
+
+  }
+  // console.log(maxValueTable)
+  
 }
 var cakeTypes = [
-    {weight: 7, value: 160},
-    {weight: 3, value: 90},
-    {weight: 2, value: 15},
+  {weight: 7, value: 160},
+  {weight: 3, value: 90},
+  {weight: 2, value: 15},
 ];
 
 var capacity = 20;
 
-// maxDuffleBagValue(cakeTypes, capacity)
+console.log(maxDuffleBagValue(cakeTypes, capacity))
 
 
 function Queue() {
