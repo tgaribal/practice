@@ -29,7 +29,7 @@ var fib = function (n) {
 
 }
 
-console.log(fib(12));
+// console.log(fib(12));
 
 
 var maxDuffleBagValue = function (cakeTypes, capacity) {
@@ -59,7 +59,7 @@ var cakeTypes = [
 
 var capacity = 20;
 
-console.log(maxDuffleBagValue(cakeTypes, capacity))
+// console.log(maxDuffleBagValue(cakeTypes, capacity))
 
 
 function Queue() {
@@ -169,12 +169,12 @@ var findLoneUniqueInt = function (arr) {
 
 
 var deleteNode = function (node) {
-  if (!node.next) {
-    delete node;
-  } else {
-    node.value = node.next.value;
-    node.next = node.next.next;
+  let temp = node.next;
+  if (temp) {
+    node.value = temp.value;
+    node.next = temp.next;
   }
+
 }
 
 function LinkedListNode(value) {
@@ -182,12 +182,13 @@ function LinkedListNode(value) {
   this.next = null;
 }
 
-// var a = new LinkedListNode(3);
-// var b = new LinkedListNode(8);
-// var c = new LinkedListNode(2);
+var a = new LinkedListNode(3);
+var b = new LinkedListNode(8);
+var c = new LinkedListNode(2);
 
-// a.next = b;
-// b.next = c;
+a.next = b;
+b.next = c;
+// c.next = d;
 
 // deleteNode(b);
 // console.log(a)
@@ -426,10 +427,10 @@ var findSingleDupeTime = (array, n) => {
 }
 
 var findAnyDupeSpace = (array) => {
-
+  
 }
 
-// console.log(findDupe([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 18, 19, 20, 21, 22, 23, 24], 24))
+console.log(findAnyDupeSpace([1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10]))
 
 var wordCloud = (string) => {
   var words = string.split(' ')

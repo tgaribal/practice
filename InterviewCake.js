@@ -224,17 +224,6 @@ console.log(makeChange(5, [1, 3, 5]))
 const findMinNumCoins = function (sum, coinList) {
   let coinCounts = [];
 
-  // for (let currentSum = 0; currentSum <= sum; currentSum++) {
-  //   coinCounts[currentSum] = currentSum===0 ? 0 : Infinity;
-  //   coinList.forEach(coin => {
-  //     if (coin <= currentSum) {
-  //       let diff = currentSum - coin;
-  //       coinCounts[currentSum] = Math.min( coinCounts[currentSum], 1+coinCounts[diff]);
-  //     }
-      
-  //   })
-  // }
-
   return coinCounts[sum]
 
 }
